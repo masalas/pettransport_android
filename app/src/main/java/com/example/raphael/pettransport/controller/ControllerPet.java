@@ -1,8 +1,8 @@
 package com.example.raphael.pettransport.controller;
 
-import java.util.List;
-
 import com.example.raphael.pettransport.models.Pet;
+
+import java.util.List;
 
 public interface ControllerPet {
     void addPet(Pet pet);

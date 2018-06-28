@@ -13,16 +13,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:layout_marginEnd="35dp"
-        android:layout_marginLeft="291dp"
-        android:layout_marginRight="35dp"
-        android:layout_marginStart="291dp"
-        android:layout_marginTop="447dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginLeft="264dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginStart="264dp"
         android:background="@android:color/holo_blue_dark"
-        android:onClick="buscarpets"
-        android:text="Buscar Pet"
+        android:text="Buscar Pets"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
+
 </android.support.constraint.ConstraintLayout>

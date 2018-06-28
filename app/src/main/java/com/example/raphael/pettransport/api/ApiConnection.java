@@ -2,7 +2,6 @@ package com.example.raphael.pettransport.api;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -12,7 +11,7 @@ import java.net.URL;
 public class ApiConnection {
     private static final String USER_AGENT = "Mozilla/5.0";
 
-    public static String URL_BASE = "http://192.168.0.108:5000";
+    public static String URL_BASE = "http://masalas.pythonanywhere.com";
 
     public String sendGet(String url) throws Exception {
 

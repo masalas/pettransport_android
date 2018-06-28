@@ -1,14 +1,16 @@
 package com.example.raphael.pettransport.activities;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.raphael.pettransport.R;
 import com.example.raphael.pettransport.controller.ControllerPet;
@@ -18,13 +20,13 @@ import com.example.raphael.pettransport.models.Pet;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PetsActivity extends Activity  {
+public class PetsActivity extends Activity {
 
     Button button;
     EditText raio;
     ListView listViewPets;
     ArrayAdapter<String> adaptador;
-
+    List<Pet> pets;
     ControllerPet controllerPet;
 
     public PetsActivity() {
@@ -55,7 +57,7 @@ public class PetsActivity extends Activity  {
     public void buscarPets(View view) {
         String raiotxt = this.raio.getText().toString();
 
-        List<Pet> pets = new ArrayList<>();
+        pets = new ArrayList<>();
 
         try {
             if (raiotxt.isEmpty()){
@@ -72,6 +74,36 @@ public class PetsActivity extends Activity  {
         adaptador = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, this.petsToString(pets));
 
         listViewPets.setAdapter(adaptador);
+
+        listViewPets.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String name = (String) listViewPets.getItemAtPosition(i);
+                name = name.substring(0,name.indexOf('-'));
+                if(pets != null){
+                    for(int o = 0; o < pets.size();o++){
+
+                        if(name.trim().equalsIgnoreCase(pets.get(i).getNome())){
+                            Intent intent = new Intent(PetsActivity.this,ActivityMapa.class);
+                            Bundle bundle = new Bundle();
+                            bundle.putDouble("lat", pets.get(i).getLat());
+                            bundle.putDouble("long", pets.get(i).getLon());
+                            bundle.putString("nomepet",pets.get(i).getNome());
+                            intent.putExtras(bundle);
+                            startActivity(intent);
+                            o = pets.size();
+                        }
+
+                    }
+                }else{
+                    Toast.makeText(PetsActivity.this,"pets é nulo",Toast.LENGTH_SHORT).show();
+                }
+
+
+
+
+            }
+        });
     }
 
     private List<String> petsToString(List<Pet> pets){
